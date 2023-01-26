@@ -13,8 +13,8 @@ import retrofit2.http.Query
 
 // 전체주소 - https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?serviceKey=Asw3z8UHmL0yTDaGu0zke%2FR5RbLXMQPiDVfqUqcioOOYpM2JVWx9Dzat3YOBZM3ba5JoUWTP47DrZR4ZmISeag%3D%3D&pageNo=1&numOfRows=10&dataType=JSON&base_date=20230126&base_time=0500&nx=55&ny=127
 // 인증키 - Asw3z8UHmL0yTDaGu0zke%2FR5RbLXMQPiDVfqUqcioOOYpM2JVWx9Dzat3YOBZM3ba5JoUWTP47DrZR4ZmISeag%3D%3D
-// BASE_URL - https://apis.data.go.kr/1360000/VilageFcstInfoService/
-// @GET - getVilageFcst?serviceKey=Asw3z8UHmL0yTDaGu0zke%2FR5RbLXMQPiDVfqUqcioOOYpM2JVWx9Dzat3YOBZM3ba5JoUWTP47DrZR4ZmISeag%3D%3D&pageNo=1&numOfRows=10&dataType=JSON&base_date=20230126&base_time=0500&nx=55&ny=127
+// BASE_URL - https://apis.data.go.kr/1360000/VilageFcstInfoService 2.0/
+// @GET - getVilageFcst?serviceKey=Asw3z8UHmL0yTDaGu0zke%2FR5RbLXMQPiDVfqUqcioOOYpM2JVWx9Dzat3YOBZM3ba5JoUWTP47DrZR4ZmISeag%3D%3D
 
 val data_type = "JSON"
 val num_of_rows = 10
@@ -49,6 +49,8 @@ data class ITEM(
 )
 
 interface WeatherInterface {
+
+    // 데이터 동적으로 가져오기 위해 쿼리부분에 요청명세부분 추가
     @GET("getVilageFcst?Asw3z8UHmL0yTDaGu0zke%2FR5RbLXMQPiDVfqUqcioOOYpM2JVWx9Dzat3YOBZM3ba5JoUWTP47DrZR4ZmISeag%3D%3D")
     fun getWeather(
         @Query("dataType") dataType: String,
@@ -62,7 +64,7 @@ interface WeatherInterface {
 }
 
 private val retrofit = Retrofit.Builder()
-    .baseUrl("https://apis.data.go.kr/1360000/VilageFcstInfoService/")
+    .baseUrl("https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/")
     .addConverterFactory(GsonConverterFactory.create())
     .build()
 
